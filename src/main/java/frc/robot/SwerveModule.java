@@ -8,8 +8,6 @@ import com.ctre.phoenix.motorcontrol.TalonFXControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonFX;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PWMSparkMax;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.ProfiledPIDController;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
