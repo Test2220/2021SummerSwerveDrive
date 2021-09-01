@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile;
 
 public class SwerveModule {
   private static final double kWheelRadius = 0.0508;
-  private static final int kEncoderResolution = 4096;
+  private static final int kEncoderResolution = 2048;
 
   private static final double kModuleMaxAngularVelocity = Drivetrain.kMaxAngularSpeed;
   private static final double kModuleMaxAngularAcceleration = 2 * Math.PI; // radians per second squared
@@ -57,7 +57,12 @@ public class SwerveModule {
    * @return The current state of the module.
    */
   public SwerveModuleState getState() {
-    return new SwerveModuleState(m_driveMotor.getSelectedSensorVelocity(), new Rotation2d(m_turningMotor.getSelectedSensorVelocity()));
+    return new SwerveModuleState(getDriveMotorEncoder(), new Rotation2d(m_turningMotor.getSelectedSensorVelocity()));
+  }
+
+  private double getDriveMotorEncoder() {
+    return
+    m_driveMotor.getSelectedSensorVelocity()*10/kEncoderResolution*Math.PI*kWheelRadius*2;
   }
 
   /**
@@ -70,7 +75,7 @@ public class SwerveModule {
     SwerveModuleState state = SwerveModuleState.optimize(desiredState, new Rotation2d(m_turningMotor.getSelectedSensorVelocity()));
 
     // Calculate the drive output from the drive PID controller.
-    final double driveOutput = m_drivePIDController.calculate(m_driveMotor.getSelectedSensorVelocity(), state.speedMetersPerSecond);
+    final double driveOutput = m_drivePIDController.calculate(getDriveMotorEncoder(), state.speedMetersPerSecond);
 
     final double driveFeedforward = m_driveFeedforward.calculate(state.speedMetersPerSecond);
 
