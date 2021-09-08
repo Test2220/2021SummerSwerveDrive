@@ -25,7 +25,6 @@ public class SwerveModule {
   private final TalonFX m_driveMotor;
   private final TalonFX m_turningMotor;
 
-
   private final PIDController m_drivePIDController = new PIDController(1, 0, 0);
 
   private final ProfiledPIDController m_turningPIDController = new ProfiledPIDController(1, 0, 0,
@@ -45,8 +44,6 @@ public class SwerveModule {
     m_driveMotor = new TalonFX(driveMotorChannel);
     m_turningMotor = new TalonFX(turningMotorChannel);
 
-    
-
     // Limit the PID Controller's input range between -pi and pi and set the input
     // to be continuous.
     m_turningPIDController.enableContinuousInput(-Math.PI, Math.PI);
@@ -62,13 +59,11 @@ public class SwerveModule {
   }
 
   private double getDriveMotorEncoder() {
-    return
-    m_driveMotor.getSelectedSensorVelocity()*10/kEncoderResolution*Math.PI*kWheelRadius*2;
+    return m_driveMotor.getSelectedSensorVelocity() * 10 / kEncoderResolution * Math.PI * kWheelRadius * 2;
   }
 
   private double getTurningMotorEncoder() {
-    return
-    m_turningMotor.getSelectedSensorVelocity()*10/kEncoderResolution*2*Math.PI;
+    return m_turningMotor.getSelectedSensorVelocity() * 10 / kEncoderResolution * 2 * Math.PI;
   }
 
   /**
