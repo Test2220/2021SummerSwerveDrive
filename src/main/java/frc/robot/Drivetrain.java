@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.geometry.Translation2d;
 import edu.wpi.first.wpilibj.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.wpilibj.kinematics.SwerveDriveOdometry;
+import edu.wpi.first.wpilibj.util.Units;
+
 import com.kauailabs.navx.frc.AHRS;
 
 /** Represents a swerve drive style drivetrain. */
@@ -15,10 +17,12 @@ public class Drivetrain {
   public static final double kMaxSpeed = 3.0; // 3 meters per second
   public static final double kMaxAngularSpeed = Math.PI; // 1/2 rotation per second
 
-  private final Translation2d m_frontLeftLocation = new Translation2d(0.381, 0.381);
-  private final Translation2d m_frontRightLocation = new Translation2d(0.381, -0.381);
-  private final Translation2d m_backLeftLocation = new Translation2d(-0.381, 0.381);
-  private final Translation2d m_backRightLocation = new Translation2d(-0.381, -0.381);
+  private final double distance = Units.inchesToMeters(9.25);
+
+  private final Translation2d m_frontLeftLocation = new Translation2d(distance, distance);
+  private final Translation2d m_frontRightLocation = new Translation2d(distance, -distance);
+  private final Translation2d m_backLeftLocation = new Translation2d(-distance, distance);
+  private final Translation2d m_backRightLocation = new Translation2d(-distance, -distance);
 
   private final SwerveModule m_frontLeft = new SwerveModule(1, 2);
   private final SwerveModule m_frontRight = new SwerveModule(3, 4);
