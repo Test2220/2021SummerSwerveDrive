@@ -13,9 +13,10 @@ import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.trajectory.TrapezoidProfile;
+import edu.wpi.first.wpilibj.util.Units;
 
 public class SwerveModule {
-  private static final double kWheelRadius = 0.0508;
+  private static final double kWheelRadius = Units.inchesToMeters(2);
   private static final int kEncoderResolution = 2048;
 
   private static final double kModuleMaxAngularVelocity = Drivetrain.kMaxAngularSpeed;
